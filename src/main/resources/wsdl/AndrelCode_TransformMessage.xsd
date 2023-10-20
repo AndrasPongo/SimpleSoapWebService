@@ -1,0 +1,14 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://example.com/transform"
+            xmlns:tns="http://example.com/transform"
+            elementFormDefault="qualified">
+
+    <xsd:complexType name="TransformMessageType">
+        <xsd:sequence>
+            <xsd:element name="header" type="xsd:string"/>
+            <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- You can define more elements or types here as needed -->
+</xsd:schema>
