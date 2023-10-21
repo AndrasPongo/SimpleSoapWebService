@@ -1,36 +1,36 @@
-<wsdl:definitions name="HelloWorld"
-                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://example.com/helloworld"
-                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                  xmlns:trans="http://example.com/transform"
-                  targetNamespace="http://example.com/helloworld">
+                  xmlns:tns="http://andrelcode.com/simplesoapwebservice"
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  name="TransformMessageService"
+                  targetNamespace="http://andrelcode.com/simplesoapwebservice">
 
-    <!-- Importing the external XSD -->
     <wsdl:types>
-        <xsd:schema>
-            <xsd:import namespace="http://example.com/transform" schemaLocation="TransformMessageType.xsd"/>
-        </xsd:schema>
+        <xs:schema>
+            <xs:import namespace="http://andrelcode.com/simplesoapwebservice"
+                       schemaLocation="AndrelCode_TransformMessage.xsd"/> <!-- Adjust the schema location based on your project setup -->
+        </xs:schema>
     </wsdl:types>
 
     <wsdl:message name="TransformMessageRequest">
-        <wsdl:part name="parameters" element="trans:TransformMessageType"/>
+        <wsdl:part name="parameters" element="tns:TransformMessageRequest"/>
     </wsdl:message>
 
     <wsdl:message name="TransformMessageResponse">
-        <wsdl:part name="parameters" element="trans:TransformMessageType"/>
+        <wsdl:part name="parameters" element="tns:TransformMessageResponse"/>
     </wsdl:message>
 
-    <wsdl:portType name="HelloWorldPort">
-        <wsdl:operation name="TransformMessageOperation">
+    <wsdl:portType name="TransformMessagePort">
+        <wsdl:operation name="TransformMessage">
             <wsdl:input message="tns:TransformMessageRequest"/>
             <wsdl:output message="tns:TransformMessageResponse"/>
         </wsdl:operation>
     </wsdl:portType>
 
-    <wsdl:binding name="HelloWorldBinding" type="tns:HelloWorldPort">
+    <wsdl:binding name="TransformMessageBinding" type="tns:TransformMessagePort">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <wsdl:operation name="TransformMessageOperation">
+        <wsdl:operation name="TransformMessage">
             <soap:operation soapAction=""/>
             <wsdl:input>
                 <soap:body use="literal"/>
@@ -41,9 +41,9 @@
         </wsdl:operation>
     </wsdl:binding>
 
-    <wsdl:service name="HelloWorldService">
-        <wsdl:port name="HelloWorldPort" binding="tns:HelloWorldBinding">
-            <soap:address location="http://localhost:8080/ws/helloworld"/>
+    <wsdl:service name="TransformMessageService">
+        <wsdl:port name="TransformMessagePort" binding="tns:TransformMessageBinding">
+            <soap:address location="http://localhost:8080/ws/transformmessage"/> <!-- Adjust the location URL based on your service's actual deployment URI -->
         </wsdl:port>
     </wsdl:service>
 

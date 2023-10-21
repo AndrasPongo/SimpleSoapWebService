@@ -1,14 +1,30 @@
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://example.com/transform"
-            xmlns:tns="http://example.com/transform"
-            elementFormDefault="qualified">
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://andrelcode.com/simplesoapwebservice"
+           xmlns:tns="http://andrelcode.com/simplesoapwebservice"
+           elementFormDefault="qualified">
 
-    <xsd:complexType name="TransformMessageType">
-        <xsd:sequence>
-            <xsd:element name="header" type="xsd:string"/>
-            <xsd:element name="message" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
+    <xs:element name="TransformMessageRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TransformMessage" type="tns:TransformMessageType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
-    <!-- You can define more elements or types here as needed -->
-</xsd:schema>
+    <xs:element name="TransformMessageResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="TransformMessage" type="tns:TransformMessageType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="TransformMessageType">
+        <xs:sequence>
+            <xs:element name="header" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
